@@ -4,7 +4,7 @@
 
 
 
-void saveField(FILE * fp, char* str);
+void saveField(char* str, FILE * fp);
 int main(){
     FILE * output;
     char first[30], last[30], address[40], city[30], state[30], zip[10];
@@ -30,7 +30,6 @@ int main(){
 
         printf("Deseja salvar? [sim = 1 | não = 0]");
         scanf("%i", &aux);
-
         if(aux == 1){
             saveField(first, output);
             saveField(last, output);
@@ -48,12 +47,10 @@ int main(){
     fclose(output);
 }
 
-void saveField(FILE *fp, char* str){
+void saveField(char* str, FILE * fp){
     char aux[5];
     sprintf(aux,"%i", strlen(str));
     fputs(aux, fp);
     fputs(str, fp);
     fputs("|", fp);
-
-    return 1;
 }
