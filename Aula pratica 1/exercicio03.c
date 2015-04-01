@@ -48,9 +48,15 @@ int main(){
 }
 
 void saveField(char* str, FILE * fp){
-    char aux[5];
-    sprintf(aux,"%i", strlen(str));
+    char aux[3];
+    int x = strlen(str);
+    if(x < 10){
+        sprintf(aux,"0%i", x);
+    }else{
+        sprintf(aux,"%i", strlen(str));
+    }
+    fputs("|", fp);
     fputs(aux, fp);
     fputs(str, fp);
-    fputs("|", fp);
+
 }

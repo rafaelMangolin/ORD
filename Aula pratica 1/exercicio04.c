@@ -20,27 +20,28 @@ int main() {
     }
 
 
-    aux = readFile(output, &field_aux);
+    aux = fgetc(output);
+    int x = 0;
+    int y = 0;
+  //while(aux != EOF){
 
-    while(aux > 0){
-    printf("%s -- %i\n", field_aux, strlen(field_aux));
-        aux = readFile(output, field_aux);
-    }
+        while(aux == '0' || aux == '|'){
+            printf("%c", aux);
+            if(x==3){x=0;}
+            aux = fgetc(output);
+            x++;
+        }
+       while(x<3){
+            printf("\n%c", aux);
 
 
-}
+            y = (aux-'0');
+            printf(" \n y %i",  y);
+            aux = fgetc(output);
+            x++;
+        }
+        x=0;
+    //}
 
-int readFile(FILE *fp, char str[]) {
-    int i = 0;
-    char ch = fgetc(fp);
-
-    while(ch != EOF && ch !='|'){
-        str[i] = ch;
-        i++;
-        ch = fgetc(fp);
-    }
-    str[i] = '\0';
-
-    return i;
 
 }
