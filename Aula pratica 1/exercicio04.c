@@ -19,29 +19,28 @@ int main() {
         exit(1);
     }
 
-
     aux = fgetc(output);
-    int x = 0;
-    int y = 0;
-  //while(aux != EOF){
-
+    int count = 0;
+    int input_length = 0;
+    while(aux != EOF){
         while(aux == '0' || aux == '|'){
-            printf("%c", aux);
-            if(x==3){x=0;}
+            if(count==3){count=0;}
             aux = fgetc(output);
-            x++;
+            count++;
         }
-       while(x<3){
-            printf("\n%c", aux);
-
-
-            y = (aux-'0');
-            printf(" \n y %i",  y);
-            aux = fgetc(output);
-            x++;
+        input_length = 0;
+        while(count<3){
+            if(count==1){
+                input_length = 10 * (aux-'0');
+                aux = fgetc(output);
+            }else if(count == 2){
+                input_length += (aux-'0');
+            }
+            count++;
         }
-        x=0;
-    //}
-
-
+        fgets(field_aux, input_length+1, output);
+        printf("%s\n",field_aux);
+        count=0;
+        aux = fgetc(output);
+    }
 }
