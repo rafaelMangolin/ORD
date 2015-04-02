@@ -1,9 +1,0 @@
-while(x != 's'){
-                printf("You're still here?");
-                scanf("%c", &x);
-            }
-            printf("It's over! Go home. Go!");while(x != 's'){
-                printf("You're still here?");
-                scanf("%c", &x);
-            }
-            printf("It's over! Go home. Go!");
