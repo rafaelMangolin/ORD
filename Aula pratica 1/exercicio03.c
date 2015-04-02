@@ -17,16 +17,22 @@ int main(){
     do{
         printf("Digite o nome:");
         gets(first);
+        getchar();
         printf("Digite o sobrenome:");
         gets(last);
+        getchar();
         printf("Digite o endereço:");
         gets(address);
+        getchar();
         printf("Digite a cidade:");
         gets(city);
+        getchar();
         printf("Digite o estado:");
         gets(state);
+        getchar();
         printf("Digite o CEP:");
         gets(zip);
+        getchar();
 
         printf("Deseja salvar? [sim = 1 | não = 0]");
         scanf("%i", &aux);
