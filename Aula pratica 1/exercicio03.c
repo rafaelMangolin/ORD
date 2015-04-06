@@ -2,67 +2,59 @@
 #include <string.h>
 #include <stdlib.h>
 
-
-
-void saveField(char* str, FILE * fp);
 int main(){
+
     FILE * output;
-    char first[30], last[30], address[40], city[30], state[30], zip[10];
+    char field[40], buffer[500];
     int aux = 0;
+    short field_length;
 
     if((output=fopen("texto.txt","w+")) == NULL){
         printf("Meça as tentativa de abrir seus arquivos Parça!");
         exit(1);
     }
     do{
+        buffer[0]='\0';
         printf("Digite o nome:");
-        gets(first);
-        getchar();
+        gets(field);
+        strcat(buffer, field);
+        strcat(buffoB, "|");
         printf("Digite o sobrenome:");
-        gets(last);
-        getchar();
+        gets(field);
+        strcat(buffer, field);
+        strcat(buffer, "|");
         printf("Digite o endereço:");
-        gets(address);
-        getchar();
+        gets(field);
+        strcat(buffer, field);
+        strcat(buffer, "|");
         printf("Digite a cidade:");
-        gets(city);
-        getchar();
+        gets(field);
+        strcat(buffer, field);
+        strcat(buffer, "|");
         printf("Digite o estado:");
-        gets(state);
-        getchar();
+        gets(field);
+        strcat(buffer, field);
+        strcat(buffer, "|");
         printf("Digite o CEP:");
-        gets(zip);
-        getchar();
+        gets(field);
+        strcat(buffer, field);
+        strcat(buffer, "|");
 
         printf("Deseja salvar? [sim = 1 | não = 0]");
         scanf("%i", &aux);
+        getchar();
         if(aux == 1){
-            saveField(first, output);
-            saveField(last, output);
-            saveField(address, output);
-            saveField(city, output);
-            saveField(state, output);
-            saveField(zip, output);
+            puts(buffer);
+            field_length = strlen(buffer);
+            fwrite(&field_length, 1, sizeof(field_length), output);
+            fwrite(buffer, 1, field_length, output);
         }
 
         printf("Deseja continuar cadastrando? [sim = 1 | não = 0]");
         scanf("%i", &aux);
+        getchar();
 
     } while(aux == 1);
 
     fclose(output);
-}
-
-void saveField(char* str, FILE * fp){
-    char aux[3];
-    int x = strlen(str);
-    if(x < 10){
-        sprintf(aux,"0%i", x);
-    }else{
-        sprintf(aux,"%i", strlen(str));
-    }
-    fputs("|", fp);
-    fputs(aux, fp);
-    fputs(str, fp);
-
 }
